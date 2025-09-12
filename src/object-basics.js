@@ -8,7 +8,7 @@ const course = {
       id: "s001",
       name: "Jon Sayers",
       email: "mrodriguez@swic.edu",
-      grades: [85, 92, 78, 88],
+      grades: [94, 92, 95, 93],
     },
     {
       id: "s002",
