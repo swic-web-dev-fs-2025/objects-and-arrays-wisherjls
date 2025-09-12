@@ -7,7 +7,7 @@ const course = {
     {
       id: "s001",
       name: "Jon Sayers",
-      email: "mrodriguez@swic.edu",
+      email: "Jon.sayers@swic.edu",
       grades: [94, 92, 95, 93],
     },
     {
