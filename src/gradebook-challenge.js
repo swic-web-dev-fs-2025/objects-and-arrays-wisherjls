@@ -86,7 +86,7 @@ const addAssignment = ({
     }),
   };
 };
-
+// Get class ranking
 const getClassRanking = ({ gradeBookData, courseId }) => {
   const course = gradeBookData.courses.find((c) => c.id === courseId);
   if (!course || course.students.length === 0) return [];
