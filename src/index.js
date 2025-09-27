@@ -1,39 +1,19 @@
-const courses = [
-  {
-    id: "CS277",
-    name: "Web Development",
-    students: [
-      {
-        id: 1,
-        name: "Maria",
-        assignments: [
-          { name: "Project 1", points: 85, maxPoints: 100 },
-          { name: "Quiz 1", points: 18, maxPoints: 20 },
-        ],
-      },
-      {
-        id: 2,
-        name: "John",
-        assignments: [
-          { name: "Project 1", points: 92, maxPoints: 100 },
-          { name: "Quiz 1", points: 19, maxPoints: 20 },
-        ],
-      },
-    ],
-  },
-];
+export const getStudentPercentage = ({ courses, courseId, studentId }) => {
+  const foundCourse = courses.find(({ id }) => id === courseId);
+  if (!foundCourse) return 0;
 
-const getStudentPercentage = (courseId, studentId) => {
-  const { totalPoints, totalMaxPoints } = gradeBook.courses
-    .find(({ id }) => id === courseId)
-    .students.find(({ id }) => id === studentId)
-    ?.assignments.reduce(
-      (totalPointsAccumulator, { points, maxPoints }) => ({
-        totalPoints: totalPointsAccumulator.totalPoints + points,
-        totalMaxPoints: totalPointsAccumulator.totalMaxPoints + maxPoints,
-      }),
-      { totalPoints: 0, totalMaxPoints: 0 }
-    ) || { totalPoints: 0, totalMaxPoints: 0 };
+  const student = foundCourse.students.find(({ id }) => id === studentId);
+  if (!student) return 0;
+
+  const totalPoints = student.assignments.reduce(
+    (sum, assignment) => sum + assignment.points,
+    0
+  );
+
+  const totalMaxPoints = student.assignments.reduce(
+    (sum, assignment) => sum + assignment.maxPoints,
+    0
+  );
 
   return Math.round((totalPoints / totalMaxPoints) * 100);
 };
