@@ -32,8 +32,11 @@ export const getClassAverage = (courses, courseId) => {
   return Math.round(totalPercentage / totalStudents);
 };
 
-const addAssignment = ({ courseId, assignmentName, maxPoints }) => {
-  const clonedGradeBook = structuredClone(gradeBook);
+export const addAssignment = (
+  courses,
+  { courseId, assignmentName, maxPoints }
+) => {
+  const clonedGradeBook = structuredClone(courses);
 
   const foundCourse = clonedGradeBook.courses.find(({ id }) => id === courseId);
   const newAssignment = { name: assignmentName, points: null, maxPoints };
