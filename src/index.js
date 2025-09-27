@@ -18,15 +18,18 @@ export const getStudentPercentage = ({ courses, courseId, studentId }) => {
   return Math.round((totalPoints / totalMaxPoints) * 100);
 };
 
-const getClassAverage = (courseId) => {
-  const foundCourse = gradeBook.courses.find(({ id }) => id === courseId);
-  const totalStudents = foundCourse.students.length;
+export const getClassAverage = (courses, courseId) => {
+  const foundCourse = courses.find(({ id }) => id === courseId);
+  if (!foundCourse) return 0;
 
-  return Math.round(
-    foundCourse.students
-      .map(({ id }) => getStudentPercentage(courseId, id))
-      ?.reduce((acc, percentage) => acc + percentage, 0) / totalStudents
-  );
+  const totalStudents = foundCourse.students.length;
+  if (totalStudents === 0) return 0;
+
+  const totalPercentage = foundCourse.students
+    .map(({ id }) => getStudentPercentage(courses, courseId, id))
+    .reduce((sum, percentage) => sum + percentage, 0);
+
+  return Math.round(totalPercentage / totalStudents);
 };
 
 const addAssignment = ({ courseId, assignmentName, maxPoints }) => {
