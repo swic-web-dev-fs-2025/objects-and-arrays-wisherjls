@@ -26,7 +26,7 @@ export const getClassAverage = (courses, courseId) => {
   if (totalStudents === 0) return 0;
 
   const totalPercentage = foundCourse.students
-    .map(({ id }) => getStudentPercentage(courses, courseId, id))
+    .map(({ id }) => getStudentPercentage({ courses, courseId, studentId: id }))
     .reduce((sum, percentage) => sum + percentage, 0);
 
   return Math.round(totalPercentage / totalStudents);
@@ -38,7 +38,7 @@ export const addAssignment = (
 ) => {
   const clonedGradeBook = structuredClone(courses);
 
-  const foundCourse = clonedGradeBook.courses.find(({ id }) => id === courseId);
+  const foundCourse = clonedGradeBook.find(({ id }) => id === courseId);
   const newAssignment = { name: assignmentName, points: null, maxPoints };
 
   foundCourse.students = foundCourse.students.map((student) => ({
