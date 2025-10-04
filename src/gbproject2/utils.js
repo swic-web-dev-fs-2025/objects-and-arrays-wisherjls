@@ -25,3 +25,4 @@ const updatedCourses = addAssignment(COURSES, {
 });
 
 console.info(`Updated data: ${JSON.stringify(updatedCourses, null, 2)}`);
+
