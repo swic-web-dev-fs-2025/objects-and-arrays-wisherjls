@@ -2,7 +2,7 @@
   "name": "nodetemplaterepo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "author": "Manav Misra",
   "type": "module",
@@ -13,6 +13,7 @@
     "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.3.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "vitest": "^3.2.4"
   }
 }
